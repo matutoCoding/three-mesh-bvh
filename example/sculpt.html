@@ -4,6 +4,20 @@
 	<title>three-mesh-bvh - Sculpting</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="./styles.css">
+	<style>
+		#sculpt-stats {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 6px 10px;
+			background: rgba(0, 0, 0, 0.6);
+			color: #fff;
+			font: 12px/1.4 monospace;
+			border-radius: 4px;
+			pointer-events: none;
+			white-space: nowrap;
+		}
+	</style>
 </head>
 <body>
 	<div id="info">
@@ -11,6 +25,17 @@
 		<br/>
 		<br/>
 		Matcap textures from <a href="https://github.com/nidorx/matcaps/">nidorx/matcaps repo</a>.
+		<br/>
+		<br/>
+		Shortcuts:
+		<br/>
+		[ / ] brush size &nbsp;·&nbsp; - / = intensity
+		<br/>
+		1-5 select brush &nbsp;·&nbsp; x toggle symmetry
+		<br/>
+		ctrl+z undo &nbsp;·&nbsp; ctrl+shift+z / ctrl+y redo
+		<br/>
+		Drop an .obj / .glb file to import it.
 	</div>
     <script type="module" src="./sculpt.js"></script>
 </body>
