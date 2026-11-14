@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - "REVISION" export with the package version, with a "-dev" suffix outside of published builds, and a "window.__THREE_MESH_BVH__" global set to it so pages using the library can be detected, with a warning when multiple copies are loaded.
 - BVHHelper: "displayChildBVHs" option to also display the BVHs of the objects in an ObjectBVH.
 - BVHComputeData: "oct16", "2x16float" and "4x16float" packed attribute types for octahedral encoded normals and tangents and half float uvs and colors.
+- `sliceMesh`, `Section`, and `sectionToSVG` for slicing a BVH with a plane into welded, closed outer and hole contours with a capped triangle mesh. Works with direct, indirect, and `SkinnedMeshBVH` trees.
+- "Layer Slicing" example demonstrating interactive layer height adjustment, live capped section rendering, and per-layer SVG export.
 
 ### Changed
 - BVHComputeData: "writeTransformData", "getBVH" and "getDefaultAttributeValue" are now public so subclasses can override them. The class API is still unstable and may change in future releases.

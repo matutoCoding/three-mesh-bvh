@@ -1,7 +1,7 @@
 import { BufferGeometry, Vector3, Side, Material, Ray, Sphere, Matrix4, Color,
 	Intersection, Box3, Triangle, Vector2, Raycaster, MeshBasicMaterial, Group,
 	LineBasicMaterial, Mesh, DataTexture, BufferAttribute, Line3, Object3D,
-	SkinnedMesh,
+	SkinnedMesh, Plane,
 } from 'three';
 
 // Contants
@@ -344,6 +344,68 @@ declare module 'three' {
 		firstHitOnly?: boolean;
 	}
 }
+
+// Section / slicing
+
+export interface SectionContour {
+
+	/** Ordered, welded vertex indices into Section.points forming a closed loop. */
+	points: Array<number>;
+	/** Whether the contour is a hole enclosed by an outer contour. */
+	hole: boolean;
+	/** Signed area in the slice plane coordinate frame. */
+	area: number;
+
+}
+
+export interface SectionRegion {
+
+	/** Index of the outer contour into Section.contours. */
+	outer: number;
+	/** Indices of enclosed hole contours into Section.contours. */
+	holes: Array<number>;
+
+}
+
+export interface SliceOptions {
+
+	/**
+	 * Signed distances with an absolute value below this are treated as zero, snapping the
+	 * vertex onto the plane. Scaled by the magnitude of the plane normal. Defaults to 1e-10.
+	 */
+	epsilon?: number;
+	/**
+	 * Include the boundary edges of triangles lying fully in the plane. Disabled by default
+	 * because closed meshes already emit those edges through neighboring crossing triangles.
+	 */
+	includeCoplanarFaces?: boolean;
+
+}
+
+export interface SectionSVGOptions {
+	precision?: number;
+	fill?: string;
+	stroke?: string;
+	strokeWidth?: number;
+
+}
+
+export class Section {
+
+	plane: Plane;
+	points: Array<Vector3>;
+	contours: Array<SectionContour>;
+	regions: Array<SectionRegion>;
+	openContours: Array<Array<number>>;
+	triangleCount: number;
+
+	toGeometry(): BufferGeometry | null;
+
+}
+
+export function sliceMesh( bvh: BVH, plane: Plane, options?: SliceOptions ): Section;
+
+export function sectionToSVG( section: Section, options?: SectionSVGOptions ): string;
 
 // Debug functions
 export function estimateMemoryInBytes( bvh: BVH ): number;

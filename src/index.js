@@ -11,6 +11,7 @@ export { REVISION } from './utils/Revision.generated.js';
 export { getBVHExtremes, estimateMemoryInBytes, getJSONStructure, validateBounds } from './debug/Debug.js';
 export * from './utils/ExtensionUtilities.js';
 export { getTriangleHitPointInfo } from './utils/TriangleUtilities.js';
+export { Section, sliceMesh, sectionToSVG } from './utils/SectionUtilities.js';
 export * from './math/ExtendedTriangle.js';
 export * from './math/OrientedBox.js';
 export * from './webgl/MeshBVHUniformStruct.js';
